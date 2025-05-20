@@ -32,12 +32,22 @@ const App = () => {
     { name: 'Mount Abu', country: 'India' },
     { name: 'Tirupati', country: 'India' },
     ]
-    
+    const [countries, setCountries] = useState([])
+    useEffect(()=>{
+      const filteredList = cityList.filter((item) => item.country = "India")
+      // console.log(filteredList)
+      setCountries(filteredList)
+    }, []) //filtering and setting the state of items on page load
   return (
     <div id="main">
-               {/* Do not remove the main div */}
+      {/* Do not remove the main div */}
+      <ol>
+        {countries.map((item, index) => {
+          return <li key={`location${index + 1}`}>{item.name}</li>; //unique key for every item
+        })}
+      </ol>
     </div>
-  )
+  );
 }
 
 export default App
